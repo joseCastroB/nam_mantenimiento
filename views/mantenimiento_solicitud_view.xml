@@ -15,6 +15,7 @@
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="tecnico_id"/>
                 <field name="planner_id"/>
+                <field name="taller_id" widget="many2one"/>
             </xpath>
 
         </field>
