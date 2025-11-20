@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_mantenimiento_solicitud" model="ir.actions.report">
+            <field name="name">Imprimir</field>
+            <field name="model">maintenance.request</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">nam_mantenimiento.report_solicitud_template</field>
+            <field name="report_file">nam_mantenimiento.report_solicitud_template</field>
+            <field name="print_report_name">'Solicitud - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_maintenance_request"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_solicitud_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2 class="text-center">Reporte de Solicitud</h2>
+                            <br/>
+                            <h4>Detalles Generales:</h4>
+                            <p><strong>Solicitud:</strong> <span t-field="o.name"/></p>
+                            <p><strong>Líder:</strong> <span t-field="o.user_id"/></p>
+                            <p><strong>Técnico:</strong> <span t-field="o.tecnico_id"/></p>
+                            <p><strong>Taller:</strong> <span t-field="o.taller_id"/></p>
+                            
+                            <hr/>
+                            <p>Este es un PDF de prueba generado desde Odoo.</p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

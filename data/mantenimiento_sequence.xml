@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_maintenance_nam" model="ir.sequence">
+            <field name="name">Correlativo Solicitud NAM</field>
+            <field name="code">maintenance.request.nam</field>
+            <field name="prefix"></field>
+            <field name="padding">6</field> <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+</odoo>
