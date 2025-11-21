@@ -1,13 +1,15 @@
 
 from odoo import models, fields, api
 
+
 class MantenimientoTaller(models.Model):
     _name = 'mantenimiento.taller'
     _description = 'Taller de Mantenimiento'
+    
     name = fields.Char(string='Nombre del Taller', required=True)
 
+
 class MaintenanceRequest(models.Model):
-    
     _inherit = 'maintenance.request'
 
     tecnico_id = fields.Many2one(
@@ -25,22 +27,22 @@ class MaintenanceRequest(models.Model):
     taller_id = fields.Many2one(
         'mantenimiento.taller',
         string='Taller',
-        
+        tracking=True,
     )
 
     @api.model
     def create(self, vals):
+
+        sequence = self.env['ir.sequence'].next_by_code('secuencia.mantenimiento.nam') or '000000'
         
+        nombre_equipo = ''
         if vals.get('equipment_id'):
-            
             equipment = self.env['maintenance.equipment'].browse(vals['equipment_id'])
-            
-            sequence = self.env['ir.sequence'].next_by_code('maintenance.request.nam') or '000000'
-            
-            vals['name'] = f"{equipment.name} / {sequence}"
+            nombre_equipo = equipment.name
         
-        elif not vals.get('name') or vals.get('name') == 'New Request':
-             sequence = self.env['ir.sequence'].next_by_code('maintenance.request.nam') or '000000'
-             vals['name'] = sequence
-             
+        if nombre_equipo:
+            vals['name'] = f"{nombre_equipo} / {sequence}"
+        else: 
+            vals['name'] = sequence
+            
         return super(MaintenanceRequest, self).create(vals)
