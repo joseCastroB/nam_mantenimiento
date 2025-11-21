@@ -8,6 +8,11 @@
         
         <field name="arch" type="xml">
             
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="required">False</attribute>
+                <attribute name="placeholder">Autogenerado al guardar</attribute>
+            </xpath>
+
             <xpath expr="//field[@name='user_id']" position="attributes">
                 <attribute name="string">Líder</attribute>
             </xpath>
@@ -15,6 +20,7 @@
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="tecnico_id"/>
                 <field name="planner_id"/>
+                <field name="taller_id" widget="many2one"/>
             </xpath>
 
         </field>

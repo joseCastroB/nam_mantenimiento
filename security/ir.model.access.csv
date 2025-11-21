@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_mantenimiento_tipo,access_mantenimiento_tipo,model_mantenimiento_equipo_tipo,base.group_user,1,1,1,1
+access_mantenimiento_taller,access_mantenimiento_taller,model_mantenimiento_taller,base.group_user,1,1,1,1
