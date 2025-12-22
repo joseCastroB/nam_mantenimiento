@@ -8,17 +8,126 @@
             <field name="arch" type="xml">
                 
                 <xpath expr="//field[@name='category_id']" position="attributes">
-                    <attribute name="string">Modelo</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='owner_user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_ref']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='effective_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                 
+                <xpath expr="//field[@name='cost']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='warranty_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Coloquial</attribute>
+                    <attribute name="placeholder">Nombre Coloquial Interno del equipo</attribute>
                 </xpath>
 
                 <xpath expr="//field[@name='category_id']" position="after">
-                    <field name="tipo_id"/>
+
+                    <field name="fecha_ingreso"/>
+                    <field name="reingreso" widget="radio"/> 
+                    <field name="motivo_ingreso"/>
+                
                 </xpath>
 
+
+                <xpath expr="//field[@name='model']" position="before">
+                    <field name="coloquial_cliente"/>
+                    <field name="docs_ingreso"/>
+                 </xpath>
+
+                <xpath expr="//field[@name='model']" position="after">
+                    <field name="marca"/>
+                </xpath>     
+
                 <xpath expr="//field[@name='warranty_date']" position="after">
-                    <field name="currency_id"/>
-                    <field name="tasa_cambio"/>
+                    <field name="propietario_id" widget="res_partner_many2one"/>
+                    <field name="horas_ingreso"/> 
+                    <field name="planner_id"/>
+                    <field name="flota"/>
+                    <field name="estado_reparacion_id"/>
+                    <field name="edad_dias"/>
+                    <field name="prox_fin"/>
                 </xpath>
+
+                <!-- Secciones nuevas -->
+
+                <xpath expr="//page[@name='maintenance']" position="before">
+
+                <page string="Evaluación">
+                    <group>
+                        <group>
+                            <field name="fecha_ingreso" string="Ingreso Equipo"/>
+                            <field name="eval_inicio"/>
+                            <field name="eval_fin"/>
+                        </group>
+                        <group>
+                            <field name="eval_dias"/>
+                            <field name="eval_std_tiempo"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Purchase Order (PO)">
+                    <group>
+                        <group>
+                            <field name="po_emision"/>
+                            <field name="po_recepcion"/>
+                            <field name="po_fin"/>
+                        </group>
+                        <group>
+                            <field name="purchase_order"/>
+                            <field name="monto_po" widget="monetary"/>
+                            <field name="currency_id"/>
+                            <field name="tasa_cambio"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Reparación">
+                    <group string="Fecha Inicio Reparación">
+                        <group>
+                            <field name="tiempo_ofertado_id"/> <field name="fecha_inicio_previos"/>
+                        </group>
+                        <group>
+                            <field name="fecha_inicio_reparacion"/>
+                            <field name="fecha_llegada_kit"/>
+                        </group>
+                    </group>
+                    <group string="Fecha Fin Reparación">
+                        <group>
+                            <field name="fecha_fin_prop_eco"/>
+                            <field name="fecha_fin_gantt"/>
+                            <field name="fecha_termino_interno"/>
+                            <field name="fecha_real_equipo_listo"/>
+                        </group>
+                        <group>
+                            <field name="repair_dias"/>
+                            <field name="repair_std_tiempo"/>
+                            <field name="fecha_entrega_equipo"/>
+                        </group>
+                    </group>    
+                </page>  
+
+            </xpath>
 
             </field>
         </record>

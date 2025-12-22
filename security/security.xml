@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_category_mantenimiento">
+            <field name="name">Mantenimiento NAM</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="group_gestor_calidad" model="res.groups">
+            <field name="name">Gestor de Documentos (ISO)</field>
+            <field name="category_id" ref="module_category_mantenimiento"/>
+        </record>
+    </data>
+</odoo>

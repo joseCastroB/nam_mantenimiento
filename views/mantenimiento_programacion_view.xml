@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_maintenance_daily_program_form" model="ir.ui.view">
+            <field name="name">maintenance.daily.program.form</field>
+            <field name="model">maintenance.daily.program</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <field name="can_edit_iso" invisible="1"/>
+                        
+                        <group string="Datos del Documento (Solo Calidad)">
+                            <group>
+                                <field name="iso_codigo" readonly="not can_edit_iso"/>
+                                <field name="iso_fecha" readonly="not can_edit_iso"/>
+                                <field name="iso_revision" readonly="not can_edit_iso"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="fecha_programacion"/>
+                                <field name="bahia"/>
+                                <field name="user_id"/>
+                                <field name="programador_id"/>
+                            </group>
+                            <group>
+                                <field name="horas_disponibles"/>
+                                <field name="horas_programadas"/>
+                                <div class="alert alert-warning" role="alert" invisible="horas_restantes &gt;= 0">
+                                    ¡Sobrecarga de horas!
+                                </div>
+                                <field name="horas_restantes" decoration-danger="horas_restantes &lt; 0"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Órdenes de Trabajo (OTs)">
+                                <field name="request_ids">
+                                    <list>
+                                        <field name="taller_id"/>
+                                        <field name="name" string="OT"/>
+                                        <field name="descripcion_corta"/>
+                                        
+                                        <field name="hrs"/>
+                                        <field name="tec"/>
+                                        <field name="hh"/>
+                                        <field name="hh_real"/>
+                                        <field name="porcentaje_completado" string="% Avance" widget="percentage"/>
+
+                                        <field name="description" string="Comentario" optional="show"/>
+                                        <field name="resumen_repuestos"/>
+                                        <field name="tecnico_id"/>
+                                        <field name="user_id" string="Líder"/>
+                                        <field name="programador_id"/>
+                                    </list>
+                                </field>           
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_maintenance_daily_program_tree" model="ir.ui.view">
+            <field name="name">maintenance.daily.program.tree</field>
+            <field name="model">maintenance.daily.program</field>
+            <field name="arch" type="xml">
+                <list>  
+                    <field name="fecha_programacion"/>
+                    <field name="bahia"/>
+                    <field name="horas_programadas"/>
+                 </list>
+            </field>
+        </record>
+
+        <record id="action_maintenance_daily_program" model="ir.actions.act_window">
+            <field name="name">Programación Diaria</field>
+            <field name="res_model">maintenance.daily.program</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_maintenance_daily_program"
+                  name="Programación Diaria"
+                  parent="maintenance.menu_maintenance_title"
+                  action="action_maintenance_daily_program"
+                  sequence="5"/>
+    </data>
+</odoo>
