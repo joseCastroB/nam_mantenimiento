@@ -35,6 +35,32 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 
+                <!--
+                <xpath expr="//field[@name='employee_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                -->
+                
+                <xpath expr="//field[@name='maintenance_team_id']" position="attributes"> 
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='technician_user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='location']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>    
+
+                <xpath expr="//field[@name='assign_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='scrap_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
                 <xpath expr="//field[@name='name']" position="attributes">
                     <attribute name="string">Coloquial</attribute>
                     <attribute name="placeholder">Nombre Coloquial Interno del equipo</attribute>
@@ -45,9 +71,12 @@
                     <field name="fecha_ingreso"/>
                     <field name="reingreso" widget="radio"/> 
                     <field name="motivo_ingreso"/>
-                
+                    <field name="usado_por" widget="radio"/>
                 </xpath>
 
+                <xpath expr="//field[@name='scrap_date']" position="after">
+                    <field name="fecha_baja"/>
+                </xpath>
 
                 <xpath expr="//field[@name='model']" position="before">
                     <field name="coloquial_cliente"/>
@@ -131,5 +160,30 @@
 
             </field>
         </record>
+
+        <record id="view_maintenance_equipment_form_inherit_employee_fix" model="ir.ui.view">
+            <field name="name">maintenance.equipment.form.inherit.employee.fix</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_form_inherit_hr"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_maintenance_equipment_form_inherit_hr_fix" model="ir.ui.view">
+            <field name="name">maintenance.equipment.form.inherit.hr.fix</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_form_inherit_hr"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='equipment_assign_to']" position="replace">
+                </xpath>
+
+
+                </field>
+        </record>
+
     </data>
 </odoo>

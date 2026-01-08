@@ -9,14 +9,12 @@ class MantenimientoTaller(models.Model):
     _name = 'mantenimiento.taller'
     _description = 'Taller de Mantenimiento'
     
-    name = fields.Char(string='Nombre del Taller', required=True, tracking=True)
-
 
 class MaintenanceRequest(models.Model):
     _inherit = 'maintenance.request'
 
     # Campos de cabecera
-
+    name = fields.Char(tracking=True)
     # BLOQUEAR CAMPO "CREADO POR" (EMPLOYEE)
     # Al redefinirlo aquí con readonly=True, se bloquea en todas las vistas automáticamente
     equipment_id = fields.Many2one('maintenance.equipment', tracking=True)
