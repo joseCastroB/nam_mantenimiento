@@ -1,4 +1,3 @@
-
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from markupsafe import Markup
@@ -10,7 +9,7 @@ class MantenimientoTaller(models.Model):
     _name = 'mantenimiento.taller'
     _description = 'Taller de Mantenimiento'
     
-    name = fields.Char(string='Nombre del Taller', required=True)
+    name = fields.Char(string='Nombre del Taller', required=True, tracking=True)
 
 
 class MaintenanceRequest(models.Model):
@@ -20,6 +19,8 @@ class MaintenanceRequest(models.Model):
 
     # BLOQUEAR CAMPO "CREADO POR" (EMPLOYEE)
     # Al redefinirlo aquí con readonly=True, se bloquea en todas las vistas automáticamente
+    equipment_id = fields.Many2one('maintenance.equipment', tracking=True)
+
     employee_id = fields.Many2one('hr.employee', string='Creado por', readonly=True)
 
     fecha_creacion_custom = fields.Date(
@@ -27,12 +28,12 @@ class MaintenanceRequest(models.Model):
         default=fields.Date.context_today,
         readonly=True
     )
-    fecha_programacion_custom = fields.Date(string='Fecha de Programación')
+    fecha_programacion_custom = fields.Date(string='Fecha de Programación', tracking=True)
 
-    descripcion_corta = fields.Char(string='Descripción')
+    descripcion_corta = fields.Char(string='Descripción', tracking=True)
 
-    hrs = fields.Float(string='HRS', default=0.0)
-    tec = fields.Float(string='TEC', default=0.0)
+    hrs = fields.Float(string='HRS', default=0.0, tracking=True)
+    tec = fields.Float(string='TEC', default=0.0, tracking=True)
 
     hh = fields.Float(
         string='HH',
@@ -46,7 +47,8 @@ class MaintenanceRequest(models.Model):
     repuesto_line_ids = fields.One2many(
         'maintenance.request.product.line',
         'request_id',
-        string='Repuestos Requeridos'
+        string='Repuestos Requeridos',
+        tracking=True
     )
 
     def action_consumir_repuestos(self):
@@ -142,7 +144,8 @@ class MaintenanceRequest(models.Model):
     tecnico_id = fields.Many2many(
         'res.users',
         string='Técnico',
-        help = "Permite seleccionar múltiples técnicos para esta orden"
+        help = "Permite seleccionar múltiples técnicos para esta orden",
+        tracking=True
     )
 
     programador_id = fields.Many2one(
@@ -152,7 +155,7 @@ class MaintenanceRequest(models.Model):
         readonly=True
     )
     
-    taller_id = fields.Many2one('mantenimiento.taller',  string='Taller')
+    taller_id = fields.Many2one('mantenimiento.taller',  string='Taller', tracking=True)
 
     bahia = fields.Selection([
         ('1', '1'),
@@ -162,9 +165,9 @@ class MaintenanceRequest(models.Model):
 
     # Seccion Notificado
 
-    hh_real = fields.Float(string='HH Real', default=0.0)
+    hh_real = fields.Float(string='HH Real', default=0.0, tracking=True)
 
-    porcentaje_completado = fields.Float(string='% Completado Tarea', default=0.0)
+    porcentaje_completado = fields.Float(string='% Completado Tarea', default=0.0, tracking=True)
 
     @api.constrains('porcentaje_completado')
     def _check_porcentaje_valido(self):
@@ -172,9 +175,9 @@ class MaintenanceRequest(models.Model):
             if record.porcentaje_completado < 0.0 or record.porcentaje_completado > 1.0:
                 raise ValidationError("El porcentaje debe ser un número entre 0 y 100.")
 
-    fecha_notificacion = fields.Date(string='Fecha Notificación')
+    fecha_notificacion = fields.Date(string='Fecha Notificación', tracking=True)
 
-    comentario_notificacion = fields.Text(string='Comentario Notificación')
+    comentario_notificacion = fields.Text(string='Comentario Notificación', tracking=True)
     
     # ---------------------------------------------------------
     # MÉTODO CREATE (Optimizado para Odoo 18)
