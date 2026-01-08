@@ -10,52 +10,51 @@ class MantenimientoTiempoOfertada(models.Model):
 class MantenimientoEquipo(models.Model):
     _inherit = 'maintenance.equipment'
 
-    coloquial_cliente = fields.Char(string='Coloquial cliente')
+    # SECCION DATOS GENERALES
+    name = fields.Char(tracking=True)
 
-    tipo_id = fields.Many2one('mantenimiento.equipo.tipo',  string='Tipo de Equipo')
-
-    fecha_ingreso = fields.Date(string='Fecha de ingreso')
-
-    propietario_id = fields.Many2one(
-        'res.partner',
-        string='Propietario'
-    )
-
-    docs_ingreso = fields.Text(string='Documentos de ingreso de taller')
-    horas_ingreso = fields.Float(string = 'Horómetro de componente')
+    fecha_ingreso = fields.Date(string='Fecha de ingreso', tracking=True)
 
     reingreso = fields.Selection(
         [('si', 'Sí'), ('no', 'No')],
-        string='Reingreso'
+        string='Reingreso',
+        tracking=True
     )
 
-    motivo_ingreso = fields.Text(string='Motivo de ingreso a taller')
+    motivo_ingreso = fields.Text(string='Motivo de ingreso a taller', tracking=True)
 
-    tasa_cambio = fields.Float(
-        string='Tasa de cambio', 
-        digits=(12, 3) # (Total dígitos, Decimales)
+    usado_por = fields.Selection([
+        ('interno', 'Cliente Interno'),
+        ('externo', 'Cliente Externo')
+
+    ], string='Usado por', default='interno', tracking=True)
+
+    fecha_baja = fields.Date(string='Fecha de baja', tracking=True)
+
+    # SECCION INFORMACION DEL PRODUCTO
+    coloquial_cliente = fields.Char(string='Coloquial cliente', tracking=True)
+
+    docs_ingreso = fields.Text(string='Documentos de ingreso de taller', tracking=True)
+
+    model = fields.Char(tracking=True)
+
+    marca = fields.Char(string='Marca', tracking=True)
+
+    serial_no = fields.Char(tracking=True)
+
+    propietario_id = fields.Many2one(
+        'res.partner',
+        string='Propietario',
+        tracking=True
     )
-    
-    marca = fields.Char(string='Marca')
 
-    purchase_order = fields.Char(string='PO (Purchase Order)')
+    horas_ingreso = fields.Float(string = 'Horómetro de componente', tracking=True)
 
-    currency_id = fields.Many2one(
-        'res.currency',
-        string ='Moneda',
-        required = True,
-        default = lambda self: self.env.company.currency_id.id
-    )
 
-    monto_po = fields.Monetary(
-        string='Monto PO',
-        currency_field='currency_id'
-    )
+    tipo_id = fields.Many2one('mantenimiento.equipo.tipo',  string='Tipo de Equipo', tracking=True)
 
-    # Sección Datos de reconocimiento
+    planner_id = fields.Many2one('res.users', string='Planner', tracking=True)
 
-    planner_id = fields.Many2one('res.users', string='Planner')
-    
     flota = fields.Selection([
         ('eq_comp_min_50', 'EQ.COMP<50HP'),
         ('eq_comp_max_50', 'EQ.COMP>50HP'),
@@ -64,7 +63,7 @@ class MantenimientoEquipo(models.Model):
         ('equipos_varios', 'EQUIPOS VARIOS'),
         ('bombas_min_60', 'BOMBAS<60HP'),
         ('bombas_max_60', 'BOMBAS>60HP')
-    ], string='Flota')
+    ], string='Flota', tracking=True)
 
     estado_reparacion_id = fields.Selection([
         ('espera_eval', 'ESPERA EVAL'),
@@ -75,13 +74,14 @@ class MantenimientoEquipo(models.Model):
         ('reparacion', 'REPARACION'),
         ('entregado', 'ENTREGADO'),
         ('terminado', 'TERMINADO')
-    ], string='Estado de Reparación')
+    ], string='Estado de Reparación', tracking=True)
 
     edad_dias = fields.Char(
         string='Edad',
         compute='_compute_edad_dias',
         store=False
     )
+
 
     @api.depends('fecha_ingreso', 'fecha_real_equipo_listo')
     def _compute_edad_dias(self):
@@ -124,8 +124,8 @@ class MantenimientoEquipo(models.Model):
 
     # Sección  Evaluación (fechas)
 
-    eval_inicio = fields.Date(string='Inicio de evaluación')
-    eval_fin = fields.Date(string='Fin de evaluación')
+    eval_inicio = fields.Date(string='Inicio de evaluación', tracking=True)
+    eval_fin = fields.Date(string='Fin de evaluación', tracking=True)
     eval_dias = fields.Char(
         string='Eval (días)',
         compute='_compute_eval_días',
@@ -186,27 +186,50 @@ class MantenimientoEquipo(models.Model):
 
     # Sección PO
 
-    po_emision = fields.Date(string ='PO Emisión')
-    po_recepcion = fields.Date(string = 'PO Recepción' )
-    po_fin = fields.Date(string = 'PO Fin')
+    po_emision = fields.Date(string ='PO Emisión', tracking=True)
+    po_recepcion = fields.Date(string = 'PO Recepción', tracking=True )
+    po_fin = fields.Date(string = 'PO Fin', tracking=True)
+
+    purchase_order = fields.Char(string='PO (Purchase Order)', tracking=True)
+
+    monto_po = fields.Monetary(
+        string='Monto PO',
+        currency_field='currency_id',
+        tracking=True
+    )
+
+    currency_id = fields.Many2one(
+        'res.currency',
+        string ='Moneda',
+        required = True,
+        default = lambda self: self.env.company.currency_id.id,
+        tracking=True
+    )
+
+    tasa_cambio = fields.Float(
+        string='Tasa de cambio', 
+        digits=(12, 3), # (Total dígitos, Decimales)
+        tracking=True
+    )
 
     # Fecha inicio reparación
 
     tiempo_ofertado_id = fields.Many2one(
         'maintenance.repair.time.offered',
-        string='Tiempo ofertado (semanas)'
+        string='Tiempo ofertado (semanas)',
+        tracking=True
     )
 
-    fecha_inicio_previos = fields.Date(string='Fecha Inicio Previos Reparación')
-    fecha_inicio_reparacion = fields.Date(string='Fecha Inicio Reparacion')
-    fecha_llegada_kit = fields.Date(string= 'Llegada de Kit')
+    fecha_inicio_previos = fields.Date(string='Fecha Inicio Previos Reparación', tracking=True)
+    fecha_inicio_reparacion = fields.Date(string='Fecha Inicio Reparacion', tracking=True)
+    fecha_llegada_kit = fields.Date(string= 'Llegada de Kit', tracking=True)
 
     # Fecha  fin reparación
 
-    fecha_fin_prop_eco = fields.Date(string='Fin Según Prop. Eco.')
-    fecha_fin_gantt = fields.Date(string='Fin Gantt')
-    fecha_termino_interno = fields.Date(string='Termino Interno')
-    fecha_real_equipo_listo = fields.Date(string='Real Equipo Listo')
+    fecha_fin_prop_eco = fields.Date(string='Fin Según Prop. Eco.', tracking=True)
+    fecha_fin_gantt = fields.Date(string='Fin Gantt', tracking=True)
+    fecha_termino_interno = fields.Date(string='Termino Interno', tracking=True)
+    fecha_real_equipo_listo = fields.Date(string='Real Equipo Listo', tracking=True)
 
     repair_dias = fields.Integer(
         string='Repair (Días)', 
@@ -260,7 +283,7 @@ class MantenimientoEquipo(models.Model):
         for record in self:
             record.repair_std_tiempo = tabla_tiempos_repair.get(record.flota, 0)
 
-    fecha_entrega_equipo = fields.Date(string='Entrega de Equipo')
+    fecha_entrega_equipo = fields.Date(string='Entrega de Equipo', tracking=True)
 
     def _compute_display_name(self):
         for record in self: 
