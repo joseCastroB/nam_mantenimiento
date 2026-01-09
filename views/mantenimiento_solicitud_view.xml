@@ -107,6 +107,30 @@
         </field>
     </record>
 
+    <record id="view_mantenimiento_taller_tree" model="ir.ui.view">
+        <field name="name">mantenimiento.taller.tree</field>
+        <field name="model">mantenimiento.taller</field>
+        <field name="arch" type="xml">
+            <list> <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_mantenimiento_taller_form" model="ir.ui.view">
+        <field name="name">mantenimiento.taller.form</field>
+        <field name="model">mantenimiento.taller</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
     <record id="maintenance.menu_m_request" model="ir.ui.menu">
         <field name="name">Orden de Trabajo</field>
     </record>
