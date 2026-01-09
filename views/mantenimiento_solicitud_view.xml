@@ -70,7 +70,7 @@
             </xpath>
 
             <xpath expr="//field[@name='user_id']" position="after">
-                <field name="tecnico_id"/>
+                <field name="tecnico_id" widget="many2many_tags_avatar"/>
             </xpath>
             
             <xpath expr="//field[@name='tecnico_id']" position="after">
