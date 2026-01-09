@@ -237,14 +237,15 @@
                                             <table class="table table-bordered table-sm" style="border: 2px solid black; text-align: center;">
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DISPONIBLES</td>
-                                                    <td>114</td> </tr>
+                                                    <td><span t-field="o.horas_disponibles"/></td> </tr>
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH PROGRAMADAS</td>
                                                     <td><span t-field="o.horas_programadas"/></td>
                                                 </tr>
-                                                <tr>
+                                        <!--    <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DAYLI</td>
-                                                    <td>8.5</td> </tr>
+                                                    <td>8.5</td> 
+                                                </tr> -->
                                             </table>
                                         </div>
 
@@ -275,7 +276,7 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 30%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
                                                 
                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
                                                                                                 
@@ -283,7 +284,7 @@
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 20%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -317,10 +318,10 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.comentario_solicitud"/></td>
+                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
                                             </tr>
                                             
-                                            <t t-foreach="range(5)" t-as="i">
+                                    <!--        <t t-foreach="range(5)" t-as="i">
                                                 <tr style="height: 25px;">
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
@@ -334,7 +335,7 @@
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                 </tr>
-                                            </t>
+                                            </t>  -->
                                         </tbody>
                                     </table>
                                     
@@ -396,14 +397,16 @@
                                             <table class="table table-bordered table-sm" style="border: 2px solid black; text-align: center;">
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DISPONIBLES</td>
-                                                    <td>114</td> </tr>
+                                                    <td><span t-field="o.horas_disponibles"/></td> 
+                                                </tr>
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH PROGRAMADAS</td>
                                                     <td><span t-field="o.horas_programadas"/></td>
                                                 </tr>
-                                                <tr>
+                                    <!--        <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DAYLI</td>
-                                                    <td>8.5</td> </tr>
+                                                    <td>8.5</td> 
+                                                </tr> -->
                                             </table>
                                         </div>
 
@@ -434,7 +437,7 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 30%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
                                                 
                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
                                                 
@@ -442,7 +445,7 @@
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 20%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -476,10 +479,10 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.comentario_solicitud"/></td>
+                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
                                             </tr>
                                             
-                                            <t t-foreach="range(5)" t-as="i">
+                                    <!--    <t t-foreach="range(5)" t-as="i">
                                                 <tr style="height: 25px;">
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
@@ -493,7 +496,7 @@
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                 </tr>
-                                            </t>
+                                            </t> -->
                                         </tbody>
                                     </table>
                                     
@@ -555,14 +558,16 @@
                                             <table class="table table-bordered table-sm" style="border: 2px solid black; text-align: center;">
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DISPONIBLES</td>
-                                                    <td>114</td> </tr>
+                                                    <td><span t-field="o.horas_disponibles"/></td> 
+                                                </tr>
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH PROGRAMADAS</td>
                                                     <td><span t-field="o.horas_programadas"/></td>
                                                 </tr>
-                                                <tr>
+                                        <!--    <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DAYLI</td>
-                                                    <td>8.5</td> </tr>
+                                                    <td>8.5</td> 
+                                                </tr> --> 
                                             </table>
                                         </div>
 
@@ -593,7 +598,7 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 30%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
                                                 
                                                 <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
                                                                                                 
@@ -601,7 +606,7 @@
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 20%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -635,10 +640,10 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.comentario_solicitud"/></td>
+                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
                                             </tr>
                                             
-                                            <t t-foreach="range(5)" t-as="i">
+                                    <!--    <t t-foreach="range(5)" t-as="i">
                                                 <tr style="height: 25px;">
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
@@ -652,7 +657,7 @@
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                 </tr>
-                                            </t>
+                                            </t> -->
                                         </tbody>
                                     </table>
                                     
@@ -714,14 +719,16 @@
                                             <table class="table table-bordered table-sm" style="border: 2px solid black; text-align: center;">
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DISPONIBLES</td>
-                                                    <td>114</td> </tr>
+                                                    <td><span t-field="o.horas_disponibles"/></td> 
+                                                </tr>
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH PROGRAMADAS</td>
                                                     <td><span t-field="o.horas_programadas"/></td>
                                                 </tr>
-                                                <tr>
+                                        <!--    <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DAYLI</td>
-                                                    <td>8.5</td> </tr>
+                                                    <td>8.5</td> 
+                                                </tr> --> 
                                             </table>
                                         </div>
 
@@ -752,7 +759,7 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 30%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
                                                 
                                                 <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
                                                 
@@ -760,7 +767,7 @@
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 20%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -794,10 +801,10 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.comentario_solicitud"/></td>
+                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
                                             </tr>
                                             
-                                            <t t-foreach="range(5)" t-as="i">
+                                        <!--    <t t-foreach="range(5)" t-as="i">
                                                 <tr style="height: 25px;">
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
@@ -811,7 +818,7 @@
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                 </tr>
-                                            </t>
+                                            </t> -->
                                         </tbody>
                                     </table>
                                     
@@ -874,14 +881,16 @@
                                             <table class="table table-bordered table-sm" style="border: 2px solid black; text-align: center;">
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DISPONIBLES</td>
-                                                    <td>114</td> </tr>
+                                                    <td><span t-field="o.horas_disponibles"/></td> 
+                                                </tr>
                                                 <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH PROGRAMADAS</td>
                                                     <td><span t-field="o.horas_programadas"/></td>
                                                 </tr>
-                                                <tr>
+                                        <!--    <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DAYLI</td>
-                                                    <td>8.5</td> </tr>
+                                                    <td>8.5</td>
+                                                </tr> --> 
                                             </table>
                                         </div>
 
@@ -912,7 +921,7 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 30%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
                                                 
                                                 <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
                                                 
@@ -920,7 +929,7 @@
                                                 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 20%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -954,10 +963,10 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.comentario_solicitud"/></td>
+                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
                                             </tr>
                                             
-                                            <t t-foreach="range(5)" t-as="i">
+                                    <!--    <t t-foreach="range(5)" t-as="i">
                                                 <tr style="height: 25px;">
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
@@ -971,7 +980,7 @@
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                 </tr>
-                                            </t>
+                                            </t> -->
                                         </tbody>
                                     </table>
                                     

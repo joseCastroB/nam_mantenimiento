@@ -70,6 +70,7 @@
                 <list>  
                     <field name="fecha_programacion"/>
                     <field name="bahia"/>
+                    <field name="request_ids" widget="many2many_tags" string="Órdenes de Trabajo"/>
                     <field name="horas_programadas"/>
                  </list>
             </field>
