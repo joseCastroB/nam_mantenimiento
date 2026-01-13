@@ -80,26 +80,53 @@
 
                 <xpath expr="//field[@name='model']" position="before">
                     <field name="coloquial_cliente"/>
-                    <field name="docs_ingreso"/>
+            <!--    <field name="docs_ingreso"/>    --> 
                  </xpath>
 
                 <xpath expr="//field[@name='model']" position="after">
                     <field name="marca"/>
+                    <field name="tipo_equipo_id"/>
                 </xpath>     
-
+                
                 <xpath expr="//field[@name='warranty_date']" position="after">
                     <field name="propietario_id" widget="res_partner_many2one"/>
+                    <field name="usuario_id" widget="res_partner_many2one"/>
                     <field name="horas_ingreso"/> 
                     <field name="planner_id"/>
+                    <field name="asesor_id"/>
                     <field name="flota"/>
                     <field name="estado_reparacion_id"/>
                     <field name="edad_dias"/>
                     <field name="prox_fin"/>
                 </xpath>
-
+                
                 <!-- Secciones nuevas -->
+            
+            <xpath expr="//notebook/page[1]" position="after">
 
-                <xpath expr="//page[@name='maintenance']" position="before">
+                <page string="Logística">
+                    <group>
+                        <field name="area_logistica"/>
+                    </group>
+                    <group string="Transito de Ingreso">
+                        <group>
+                            <field name="fecha_notificacion_cliente"/>
+                            <field name="fecha_salida_almacen"/>
+                            <field name="fecha_ingreso_taller"/>
+                        </group>
+                    </group>
+                    <group string="Transito de Salida">
+                        <group>
+                            <field name="fecha_salida_taller"/>
+                            <field name="transportista_id"/>
+                            <field name="fecha_entrega_almacen"/>    
+                        </group>
+                    </group>             
+                </page>
+
+            </xpath>
+
+            <xpath expr="//page[@name='maintenance']" position="before">
 
                 <page string="Evaluación">
                     <group>
@@ -121,6 +148,7 @@
                             <field name="po_emision"/>
                             <field name="po_recepcion"/>
                             <field name="po_fin"/>
+                            <field name="rfq_core_solped"/>
                         </group>
                         <group>
                             <field name="purchase_order"/>
@@ -151,7 +179,7 @@
                         <group>
                             <field name="repair_dias"/>
                             <field name="repair_std_tiempo"/>
-                            <field name="fecha_entrega_equipo"/>
+                    <!--    <field name="fecha_entrega_equipo"/>    --> 
                         </group>
                     </group>    
                 </page>  

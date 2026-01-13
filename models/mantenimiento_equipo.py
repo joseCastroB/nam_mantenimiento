@@ -7,6 +7,12 @@ class MantenimientoTiempoOfertada(models.Model):
     _description = 'Tiempo Ofertado de Reparación'
     name = fields.Char(string='Tiempo (Semanas)', required=True)
 
+class MantenimientoTipoEquipo(models.Model):
+    _name = 'maintenance.equipment.type'
+    _description = 'Tipo de Equipo'
+
+    name = fields.Char(string='Nombre', required=True)
+
 class MantenimientoEquipo(models.Model):
     _inherit = 'maintenance.equipment'
 
@@ -31,16 +37,38 @@ class MantenimientoEquipo(models.Model):
 
     fecha_baja = fields.Date(string='Fecha de baja', tracking=True)
 
+    # LOGISTICA
+
+    area_logistica = fields.Char(string='Área', tracking=True)
+
+    fecha_notificacion_cliente = fields.Date(string='Fecha de notificación de almacén cliente', tracking=True)
+
+    fecha_salida_almacen = fields.Date(string='Fecha de salida de almacén o cita de recojo', tracking=True)
+
+    fecha_ingreso_taller = fields.Date(string='Fecha de ingreso a taller', tracking=True)
+
+    fecha_salida_taller = fields.Date(string='Fecha de salida de taller', tracking=True)
+
+    transportista_id = fields.Char(string='Transportista / Guia Transporte / Guia NAM', tracking=True)
+
+    fecha_entrega_almacen = fields.Date(string='Fecha de entrega alamcén cliente', tracking=True)
+
     # SECCION INFORMACION DEL PRODUCTO
     coloquial_cliente = fields.Char(string='Coloquial cliente', tracking=True)
 
-    docs_ingreso = fields.Text(string='Documentos de ingreso de taller', tracking=True)
+   # docs_ingreso = fields.Text(string='Documentos de ingreso de taller', tracking=True)
 
     model = fields.Char(tracking=True)
 
     marca = fields.Char(string='Marca', tracking=True)
 
     serial_no = fields.Char(tracking=True)
+    
+    tipo_equipo_id = fields.Many2one(
+        'maintenance.equipment.type',  
+        string='Tipo de Equipo', 
+        tracking=True
+    )
 
     propietario_id = fields.Many2one(
         'res.partner',
@@ -48,12 +76,21 @@ class MantenimientoEquipo(models.Model):
         tracking=True
     )
 
+    usuario_id = fields.Many2one(
+        'res.partner',
+        string='Usuario',
+        tracking=True
+    )
+
     horas_ingreso = fields.Float(string = 'Horómetro de componente', tracking=True)
 
-
-    tipo_id = fields.Many2one('mantenimiento.equipo.tipo',  string='Tipo de Equipo', tracking=True)
-
     planner_id = fields.Many2one('res.users', string='Planner', tracking=True)
+
+    asesor_id = fields.Many2one(
+        'hr.employee',
+        string='Asesor Comercial',
+        tracking=True
+    )
 
     flota = fields.Selection([
         ('eq_comp_min_50', 'EQ.COMP<50HP'),
@@ -190,6 +227,8 @@ class MantenimientoEquipo(models.Model):
     po_recepcion = fields.Date(string = 'PO Recepción', tracking=True )
     po_fin = fields.Date(string = 'PO Fin', tracking=True)
 
+    rfq_core_solped = fields.Char(string='RFQ / CORE / SOLPED', tracking=True)
+
     purchase_order = fields.Char(string='PO (Purchase Order)', tracking=True)
 
     monto_po = fields.Monetary(
@@ -229,7 +268,7 @@ class MantenimientoEquipo(models.Model):
     fecha_fin_prop_eco = fields.Date(string='Fin Según Prop. Eco.', tracking=True)
     fecha_fin_gantt = fields.Date(string='Fin Gantt', tracking=True)
     fecha_termino_interno = fields.Date(string='Termino Interno', tracking=True)
-    fecha_real_equipo_listo = fields.Date(string='Real Equipo Listo', tracking=True)
+    fecha_real_equipo_listo = fields.Date(string='Equipo Listo', tracking=True)
 
     repair_dias = fields.Integer(
         string='Repair (Días)', 
