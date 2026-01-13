@@ -21,12 +21,12 @@ class MantenimientoEquipo(models.Model):
 
     fecha_ingreso = fields.Date(string='Fecha de ingreso', tracking=True)
 
-    reingreso = fields.Selection(
+    garantia = fields.Selection(
         [('si', 'Sí'), ('no', 'No')],
-        string='Reingreso',
+        string='Garantía',
         tracking=True
     )
-
+    
     motivo_ingreso = fields.Text(string='Motivo de ingreso a taller', tracking=True)
 
     usado_por = fields.Selection([
@@ -221,13 +221,36 @@ class MantenimientoEquipo(models.Model):
             # Ya no necesitamos .upper() ni .strip() porque el valor es fijo
             record.eval_std_tiempo = tabla_tiempos.get(record.flota, 0)
 
-    # Sección PO
+    # Sección PO -> Documentación Comercial
+
+    informe_taller = fields.Date(string='Informe de taller', tracking=True)
+    informe_evaluacion = fields.Date(string='Informe de evaluación', tracking=True)
+    cotizacion = fields.Date(string='Cotización', tracking=True)
+    envio_cotizacion = fields.Date(string='Envío de cotización e informe al cliente', tracking=True)
+    informe_final = fields.Date(string='Informe final', tracking=True)
+    envio_informe_final = fields.Date(string='Envío de informe final al cliente', tracking=True)
+    monto_cotizacion = fields.Float(
+        string='Monto de cotización',
+        digits = (12, 2),
+        tracking=True
+    )
+    dias_credito = fields.Integer(string='Días de crédito', tracking=True)
+    encuesta_satisfaccion = fields.Date(string='Encuesta de satisfacción', tracking=True)
+    respuesta_cliente = fields.Date(string='Respuesta del cliente', tracking=True)
+    estatus = fields.Char(string='Estatus', tracking=True)
+
 
     po_emision = fields.Date(string ='PO Emisión', tracking=True)
     po_recepcion = fields.Date(string = 'PO Recepción', tracking=True )
-    po_fin = fields.Date(string = 'PO Fin', tracking=True)
+    po_fin = fields.Date(string = 'PO Fecha de Entrega', tracking=True)
 
     rfq_core_solped = fields.Char(string='RFQ / CORE / SOLPED', tracking=True)
+
+    tiempo_ofertado_id = fields.Many2one(
+        'maintenance.repair.time.offered',
+        string='Tiempo ofertado (semanas)',
+        tracking=True
+    )
 
     purchase_order = fields.Char(string='PO (Purchase Order)', tracking=True)
 
@@ -251,13 +274,9 @@ class MantenimientoEquipo(models.Model):
         tracking=True
     )
 
-    # Fecha inicio reparación
+    notas_comerciales = fields.Text(string='Notas Comerciales', tracking=True)
 
-    tiempo_ofertado_id = fields.Many2one(
-        'maintenance.repair.time.offered',
-        string='Tiempo ofertado (semanas)',
-        tracking=True
-    )
+    # Fecha inicio reparación
 
     fecha_inicio_previos = fields.Date(string='Fecha Inicio Previos Reparación', tracking=True)
     fecha_inicio_reparacion = fields.Date(string='Fecha Inicio Reparacion', tracking=True)

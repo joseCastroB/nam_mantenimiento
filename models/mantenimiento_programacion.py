@@ -1,4 +1,5 @@
 from odoo import models, fields, api 
+from odoo.tools import format_date
 
 class MantenimientoProgramacion(models.Model):
     _name = 'maintenance.daily.program'
@@ -7,8 +8,7 @@ class MantenimientoProgramacion(models.Model):
 
     user_id = fields.Many2one(
         'res.users', 
-        string='Líder', 
-        default=lambda self: self.env.user
+        string='Líder'
     )
     
     programador_id = fields.Many2one(
@@ -17,6 +17,20 @@ class MantenimientoProgramacion(models.Model):
     )
 
     fecha_programacion = fields.Date(string = 'Fecha', default=fields.Date.context_today, required=True)
+
+    fecha_visual = fields.Char(
+        string='Fecha',
+        compute='_compute_fecha_visual'
+    )
+
+    @api.depends('fecha_programacion')
+    def _compute_fecha_visual(self):
+        for record in self:
+            if record.fecha_programacion:
+                fecha_str = format_date(self.env, record.fecha_programacion, date_format="EEEE d 'de' MMMM, y")
+                record.fecha_visual = fecha_str.capitalize()
+            else:
+                record.fecha_visual = ""
 
     bahia = fields.Selection([
         ('M1', 'M1'),
@@ -41,7 +55,18 @@ class MantenimientoProgramacion(models.Model):
         string = 'Órdenes de Trabajo'
     )
 
-    horas_disponibles = fields.Float(string='Horas Disponibles', default=114.0)
+    horas_disponibles = fields.Float(string='Horas Disponibles', default=0.0)
+
+    horas_visual= fields.Char(
+        string='Horas Programadas',
+        compute='_compute_horas_visual'
+    )
+
+    @api.depends('horas_programadas')
+    def _compute_horas_visual(self):
+        for record in self:
+            record.horas_visual = "{:.2f}".format(record.horas_programadas)
+
     horas_programadas = fields.Float(string='Horas Programadas', compute ='_compute_totales')
     horas_restantes = fields.Float(string='Horas Restantes', compute='_compute_totales')
 
