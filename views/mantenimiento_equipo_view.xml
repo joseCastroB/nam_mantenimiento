@@ -61,6 +61,10 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
 
+                <xpath expr="//page[@name='maintenance']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
                 <xpath expr="//field[@name='name']" position="attributes">
                     <attribute name="string">Coloquial</attribute>
                     <attribute name="placeholder">Nombre Coloquial Interno del equipo</attribute>
@@ -69,7 +73,7 @@
                 <xpath expr="//field[@name='category_id']" position="after">
 
                     <field name="fecha_ingreso"/>
-                    <field name="reingreso" widget="radio"/> 
+                    <field name="garantia" widget="radio"/> 
                     <field name="motivo_ingreso"/>
                     <field name="usado_por" widget="radio"/>
                 </xpath>
@@ -141,28 +145,49 @@
                         </group>
                     </group>
                 </page>
-
-                <page string="Purchase Order (PO)">
+                <!-- ANTES ERA PURCHASE ORDER (PO) -->
+                <page string="Documentación Comercial" invisible="garantia != 'si'">
                     <group>
                         <group>
+                            <field name="informe_taller"/>
+                            <field name="informe_evaluacion"/>
+                            <field name="cotizacion"/>
+                            <field name="envio_cotizacion"/>
+                            <field name="informe_final"/>
+                            <field name="envio_informe_final"/>
+                            <field name="monto_cotizacion"/>
+                            <field name="dias_credito"/>
                             <field name="po_emision"/>
                             <field name="po_recepcion"/>
                             <field name="po_fin"/>
                             <field name="rfq_core_solped"/>
+                            <field name="tiempo_ofertado_id"/> 
                         </group>
                         <group>
+                            <field name="encuesta_satisfaccion"/>
+                            <field name="respuesta_cliente"/>
+                            <field name="estatus"/>
                             <field name="purchase_order"/>
                             <field name="monto_po" widget="monetary"/>
                             <field name="currency_id"/>
                             <field name="tasa_cambio"/>
                         </group>
                     </group>
+                    <separator string="Notas / Observaciones"/>
+
+                    <div style="border: 2px solid black; padding: 10px; margin-bottom: 20px; background-color: white;">
+                        <field  name="notas_comerciales"
+                                nolabel="1"
+                                placeholder="Escribir notas u observaciones relevantes..."
+                                style="min-height: 100px;"/>
+                    </div>
                 </page>
 
                 <page string="Reparación">
                     <group string="Fecha Inicio Reparación">
                         <group>
-                            <field name="tiempo_ofertado_id"/> <field name="fecha_inicio_previos"/>
+                <!--        <field name="tiempo_ofertado_id"/> --> 
+                            <field name="fecha_inicio_previos"/>
                         </group>
                         <group>
                             <field name="fecha_inicio_reparacion"/>

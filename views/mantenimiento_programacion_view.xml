@@ -68,10 +68,10 @@
             <field name="model">maintenance.daily.program</field>
             <field name="arch" type="xml">
                 <list>  
-                    <field name="fecha_programacion"/>
+                    <field name="fecha_visual" string="Fecha"/>
                     <field name="bahia"/>
-                    <field name="request_ids" widget="many2many_tags" string="Órdenes de Trabajo"/>
-                    <field name="horas_programadas"/>
+                    <field name="horas_visual" width="400px" class="text-start"/> 
+                    <field name="request_ids" widget="many2many_tags" string="Órdenes de Trabajo"/>    
                  </list>
             </field>
         </record>
