@@ -276,15 +276,15 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">DESCRIPCION</th>
                                                 
-                                               <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
+                                               <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 8%;">PROGRAMADO</th>
                                                                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 12%;">REAL</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 8%;">REAL</th>
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -297,7 +297,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 30px;">
+                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 100px; vertical-align: middle;">
                                                 <td style="border: 1px solid black;"><span t-field="req.name"/></td>
                                                 <td style="border: 1px solid black; text-align: left;"><span t-field="req.descripcion_corta"/></td>
                                                 
@@ -318,7 +318,7 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
+                                                <td style="border: 1px solid black; text-align: left; padding: 5px;"><span t-field="req.description"/></td>
                                             </tr>
                                             
                                     <!--        <t t-foreach="range(5)" t-as="i">
@@ -437,15 +437,15 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">DESCRIPCION</th>
                                                 
-                                               <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
+                                               <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 8%;">PROGRAMADO</th>
                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 12%;">REAL</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 8%;">REAL</th>
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -458,7 +458,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 30px;">
+                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 100px; vertical-align: middle;">
                                                 <td style="border: 1px solid black;"><span t-field="req.name"/></td>
                                                 <td style="border: 1px solid black; text-align: left;"><span t-field="req.descripcion_corta"/></td>
                                                 
@@ -479,7 +479,7 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
+                                                <td style="border: 1px solid black; text-align: left; padding: 5px;"><span t-field="req.description"/></td>
                                             </tr>
                                             
                                     <!--    <t t-foreach="range(5)" t-as="i">
@@ -598,15 +598,15 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">DESCRIPCION</th>
                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 8%;">PROGRAMADO</th>
                                                                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 12%;">REAL</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 8%;">REAL</th>
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -619,7 +619,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 30px;">
+                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 100px; vertical-align: middle;">
                                                 <td style="border: 1px solid black;"><span t-field="req.name"/></td>
                                                 <td style="border: 1px solid black; text-align: left;"><span t-field="req.descripcion_corta"/></td>
                                                 
@@ -640,7 +640,7 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
+                                                <td style="border: 1px solid black; text-align: left; padding: 5px;"><span t-field="req.description"/></td>
                                             </tr>
                                             
                                     <!--    <t t-foreach="range(5)" t-as="i">
@@ -759,15 +759,15 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">DESCRIPCION</th>
                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 8%;">PROGRAMADO</th>
                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 12%;">REAL</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 8%;">REAL</th>
 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -780,7 +780,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 30px;">
+                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 100px; vertical-align: middle;">
                                                 <td style="border: 1px solid black;"><span t-field="req.name"/></td>
                                                 <td style="border: 1px solid black; text-align: left;"><span t-field="req.descripcion_corta"/></td>
                                                 
@@ -801,7 +801,7 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
+                                                <td style="border: 1px solid black; text-align: left; padding: 5px;"><span t-field="req.description"/></td>
                                             </tr>
                                             
                                         <!--    <t t-foreach="range(5)" t-as="i">
@@ -921,15 +921,15 @@
                                         <thead>
                                             <tr>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">OT</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">DESCRIPCION</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">DESCRIPCION</th>
                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 12%;">PROGRAMADO</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #f2f2f2; width: 8%;">PROGRAMADO</th>
                                                 
-                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 12%;">REAL</th>
+                                                <th colspan="3" style="border: 1px solid black; background-color: #F4B084;width: 8%;">REAL</th>
                                                 
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle; background-color: #F4B084; width: 6%;">COMPLETADO</th>
                                                 <th rowspan="2" style="border: 1px solid black; vertical-align: middle;">TECNICO</th>
-                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 25%;">COMENTARIO</th>
+                                                <th rowspan="2" style="border: 1px solid black; vertical-align: middle; width: 29%;">COMENTARIO</th>
                                             </tr>
                                             <tr>
                                                 <th style="border: 1px solid black;">HRS</th>
@@ -942,7 +942,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 30px;">
+                                            <tr t-foreach="o.request_ids" t-as="req" style="height: 100px; vertical-align: middle;">
                                                 <td style="border: 1px solid black;"><span t-field="req.name"/></td>
                                                 <td style="border: 1px solid black; text-align: left;"><span t-field="req.descripcion_corta"/></td>
                                                 
@@ -963,7 +963,7 @@
                                                 </td>
                                                 
                                                 <td style="border: 1px solid black;"><span t-field="req.tecnico_id"/></td>
-                                                <td style="border: 1px solid black; text-align: left;"><span t-field="req.description"/></td>
+                                                <td style="border: 1px solid black; text-align: left; padding: 5px;"><span t-field="req.description"/></td>
                                             </tr>
                                             
                                     <!--    <t t-foreach="range(5)" t-as="i">
