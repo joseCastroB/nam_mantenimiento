@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+
+        <record id="view_maintenance_request_popup_list_custom_v3" model="ir.ui.view">
+            <field name="name">maintenance.request.popup.list.custom.v3</field>
+            <field name="model">maintenance.request</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <list string="Seleccionar OTs" create="0" delete="0" multi_edit="0">
+                    <field name="name" string="OT"/>
+                    <field name="request_date" string="Fecha de solicitud"/>
+                    <field name="employee_id" string="Empleado"/>
+                    <field name="descripcion_corta" string="Descripción"/>
+                    <field name="taller_id" string="Ubicación Técnica"/>
+                    <field name="stage_id" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
         <record id="view_maintenance_daily_program_form" model="ir.ui.view">
             <field name="name">maintenance.daily.program.form</field>
             <field name="model">maintenance.daily.program</field>
@@ -37,23 +54,25 @@
 
                         <notebook>
                             <page string="Órdenes de Trabajo (OTs)">
-                                <field name="request_ids">
+                                <field  name="request_ids"
+                                        context="{'tree_view_ref': 'nam_mantenimiento.view_maintenance_request_popup_list_custom_v3'}">                                    
                                     <list>
                                         <field name="taller_id"/>
                                         <field name="name" string="OT"/>
                                         <field name="descripcion_corta"/>
                                         
-                                        <field name="hrs"/>
-                                        <field name="tec"/>
-                                        <field name="hh"/>
-                                        <field name="hh_real"/>
-                                        <field name="porcentaje_completado" string="% Avance" widget="percentage"/>
+                                        <field name="hrs" optional="hide"/>
+                                        <field name="tec" optional="hide"/>
+                                        <field name="hh" optional="hide"/>
+                                        <field name="hh_real" optional="hide"/>
 
-                                        <field name="description" string="Comentario" optional="show"/>
-                                        <field name="resumen_repuestos"/>
-                                        <field name="tecnico_id"/>
-                                        <field name="user_id" string="Líder"/>
-                                        <field name="programador_id"/>
+                                        <field name="description" string="Comentario" optional="hide"/>
+                                        <field name="resumen_repuestos" optional="hide"/>
+                                        <field name="tecnico_id" optional="hide"/>
+                                        <field name="user_id" string="Líder" optional="hide"/>
+                                        <field name="programador_id" optional="hide"/>
+                                        <field name="porcentaje_completado" string="% Avance" widget="percentage" optional="hide"/>
+
                                     </list>
                                 </field>           
                             </page>
@@ -61,7 +80,7 @@
                     </sheet>
                 </form>
             </field>
-        </record>
+        </record>     
 
         <record id="view_maintenance_daily_program_tree" model="ir.ui.view">
             <field name="name">maintenance.daily.program.tree</field>

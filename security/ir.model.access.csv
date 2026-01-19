@@ -4,3 +4,5 @@ access_mantenimiento_time_offered,access_mantenimiento_time_offered,model_mainte
 access_maintenance_daily_program,access_maintenance_daily_program,model_maintenance_daily_program,base.group_user,1,1,1,1
 access_maintenance_product_line,access_maintenance_product_line,model_maintenance_request_product_line,base.group_user,1,1,1,1
 access_maintenance_equipment_type,maintenance.equipment.type,model_maintenance_equipment_type,base.group_user,1,1,1,1
+access_maintenance_cost_center,maintenance.cost.center,model_maintenance_cost_center,base.group_user,1,1,1,1
+access_maintenance_equipment_status,maintenance.equipment.status,model_maintenance_equipment_status,base.group_user,1,1,1,1

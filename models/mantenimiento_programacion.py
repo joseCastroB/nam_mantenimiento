@@ -33,21 +33,11 @@ class MantenimientoProgramacion(models.Model):
                 record.fecha_visual = ""
 
     bahia = fields.Selection([
-        ('M1', 'M1'),
-        ('TALLER', 'TALLER'),
-        ('M2', 'M2'), 
-        ('D1', 'D1'),
-        ('D2', 'D2'),
-        ('E1', 'E1'),
-        ('FN', 'FN'),
-        ('PP', 'PP'),
-        ('M3', 'M3'),
-        ('E2', 'E2'),
-        ('D3', 'D3'),
-        ('M4', 'M4'),
-        ('M5', 'M5'),
-        ('D4', 'D4'),
-        ('D5', 'D5')   
+        ('MONTAJE', 'MONTAJE'),
+        ('TALLER', 'TALLER'), 
+        ('DESMONTAJE', 'DESMONTAJE'),
+        ('ELECTRICO', 'ELECTRICO'),
+        ('FUERA DE TALLER', 'FUERA DE TALLER')
     ], string = 'Bahía / Formato', required=True)
 
     request_ids = fields.Many2many(

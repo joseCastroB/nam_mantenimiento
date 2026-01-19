@@ -34,7 +34,7 @@
                     <t t-call="web.basic_layout">
                         <div class="page" style="font-family: Arial, sans-serif; font-size: 10px;">
                             
-                            <t t-if="o.bahia in ('M1', 'M2', 'M3', 'M4', 'M5')">
+                            <t t-if="o.bahia in ('MONTAJE')">
                                 
                                 <div class="page" style="font-family: Arial, sans-serif; font-size: 11px;">
                                     
@@ -50,7 +50,7 @@
                                                     SISTEMA DE GESTION INTEGRADO
                                                 </div>
                                                 <div style="text-align: center; font-weight: bold; background-color: #B4C6E7; padding: 5px;">
-                                                    DAYLI TALLER DE MONTAJE
+                                                    DAILY MONTAJE
                                                 </div>
                                             </td>
                                             
@@ -209,7 +209,7 @@
                                                     SISTEMA DE GESTION INTEGRADO
                                                 </div>
                                                 <div style="text-align: center; font-weight: bold; background-color: #d17a3fff; padding: 5px;">
-                                                    DAYLI TALLER
+                                                    DAILY TALLER
                                                 </div>
                                             </td>
                                             
@@ -354,7 +354,7 @@
                                 </div>
                             </t>
 
-                            <t t-elif="o.bahia in ('D1', 'D2', 'D3', 'D4', 'D5')">
+                            <t t-elif="o.bahia in ('DESMONTAJE')">
                                 <div class="page" style="font-family: Arial, sans-serif; font-size: 11px;">
                                     
                                     <table class="table table-bordered" style="border: 2px solid black; width: 100%; margin-bottom: 5px;">
@@ -369,7 +369,7 @@
                                                     SISTEMA DE GESTION INTEGRADO
                                                 </div>
                                                 <div style="text-align: center; font-weight: bold; background-color: #dbe919ff; padding: 5px;">
-                                                    DAYLI TALLER DE DESMONTAJE
+                                                    DAILY DESMONTAJE
                                                 </div>
                                             </td>
                                             
@@ -515,7 +515,7 @@
                                 </div>
                             </t>
 
-                            <t t-elif="o.bahia in ('E1', 'E2')">
+                            <t t-elif="o.bahia in ('ELECTRICO')">
                                 <div class="page" style="font-family: Arial, sans-serif; font-size: 11px;">
                                     
                                     <table class="table table-bordered" style="border: 2px solid black; width: 100%; margin-bottom: 5px;">
@@ -530,7 +530,7 @@
                                                     SISTEMA DE GESTION INTEGRADO
                                                 </div>
                                                 <div style="text-align: center; font-weight: bold; background-color: #56d61bff; padding: 5px;">
-                                                    DAYLI TALLER ELECTRICO
+                                                    DAILY TALLER ELECTRICO
                                                 </div>
                                             </td>
                                             
@@ -676,7 +676,7 @@
                                 </div>
                             </t>
 
-                            <t t-elif="o.bahia == 'FN'">
+                            <t t-else="FUERA DE TALLER">
                                 <div class="page" style="font-family: Arial, sans-serif; font-size: 11px;">
                                     
                                     <table class="table table-bordered" style="border: 2px solid black; width: 100%; margin-bottom: 5px;">
@@ -691,7 +691,7 @@
                                                     SISTEMA DE GESTION INTEGRADO
                                                 </div>
                                                 <div style="text-align: center; font-weight: bold; background-color: #757372ff; padding: 5px;">
-                                                    DAYLI TRABAJOS EXTERNOS
+                                                    DAILY FUERA DE TALLER
                                                 </div>
                                             </td>
                                             
@@ -837,7 +837,7 @@
                                 </div>
                             </t>
 
-                            <t t-else="PP">
+                    <!--    <t t-else="PP">
                                 <div class="page" style="font-family: Arial, sans-serif; font-size: 11px;">
                                     
                                     <table class="table table-bordered" style="border: 2px solid black; width: 100%; margin-bottom: 5px;">
@@ -887,10 +887,10 @@
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH PROGRAMADAS</td>
                                                     <td><span t-field="o.horas_programadas"/></td>
                                                 </tr>
-                                        <!--    <tr>
+                                            <tr>
                                                     <td style="background-color: #f2f2f2; font-weight: bold;">HH DAYLI</td>
                                                     <td>8.5</td>
-                                                </tr> --> 
+                                                </tr> 
                                             </table>
                                         </div>
 
@@ -966,7 +966,7 @@
                                                 <td style="border: 1px solid black; text-align: left; padding: 5px;"><span t-field="req.description"/></td>
                                             </tr>
                                             
-                                    <!--    <t t-foreach="range(5)" t-as="i">
+                                        <t t-foreach="range(5)" t-as="i">
                                                 <tr style="height: 25px;">
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
@@ -980,7 +980,7 @@
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                     <td style="border: 1px solid black;">&#160;</td>
                                                 </tr>
-                                            </t> -->
+                                            </t> 
                                         </tbody>
                                     </table>
                                     
@@ -997,9 +997,9 @@
                                     <br/>
 
                                 </div>
-                            </t>
+                            </t>  -->
                         </div>
-                    </t>
+                    </t> 
                 </t>
             </t>
         </template>
