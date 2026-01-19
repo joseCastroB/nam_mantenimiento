@@ -13,6 +13,18 @@ class MantenimientoTipoEquipo(models.Model):
 
     name = fields.Char(string='Nombre', required=True)
 
+class MantenimientoCentroCosto(models.Model):
+    _name = 'maintenance.cost.center'
+    _description = 'Centro de Costo de Mantenimiento'
+
+    name = fields.Char(string='Nombre', required=True)
+
+class MantenimientoEstatus(models.Model):
+    _name = 'maintenance.equipment.status'
+    _description = 'Estatus del equipo'
+
+    name = fields.Char(string='Nombre', required=True)
+
 class MantenimientoEquipo(models.Model):
     _inherit = 'maintenance.equipment'
 
@@ -37,6 +49,12 @@ class MantenimientoEquipo(models.Model):
 
     fecha_baja = fields.Date(string='Fecha de baja', tracking=True)
 
+    centro_costo = fields.Many2one(
+        'maintenance.cost.center',
+        string ='Centro de Costo',
+        tracking = True
+    )
+
     # LOGISTICA
 
     area_logistica = fields.Char(string='Área', tracking=True)
@@ -49,9 +67,13 @@ class MantenimientoEquipo(models.Model):
 
     fecha_salida_taller = fields.Date(string='Fecha de salida de taller', tracking=True)
 
-    transportista_id = fields.Char(string='Transportista / Guia Transporte / Guia NAM', tracking=True)
+        #transportista_id = fields.Char(string='Transportista / Guia Transporte / Guia NAM', tracking=True)
 
-    fecha_entrega_almacen = fields.Date(string='Fecha de entrega alamcén cliente', tracking=True)
+    guia_transportista = fields.Char(string='Guía de transportista', tracking=True)
+
+    guia_nam = fields.Char(string='Guía NAM', tracking=True)
+
+    fecha_entrega_almacen = fields.Date(string='Fecha de entrega almacén cliente', tracking=True)
 
     # SECCION INFORMACION DEL PRODUCTO
     coloquial_cliente = fields.Char(string='Coloquial cliente', tracking=True)
@@ -223,21 +245,25 @@ class MantenimientoEquipo(models.Model):
 
     # Sección PO -> Documentación Comercial
 
-    informe_taller = fields.Date(string='Informe de taller', tracking=True)
-    informe_evaluacion = fields.Date(string='Informe de evaluación', tracking=True)
-    cotizacion = fields.Date(string='Cotización', tracking=True)
-    envio_cotizacion = fields.Date(string='Envío de cotización e informe al cliente', tracking=True)
-    informe_final = fields.Date(string='Informe final', tracking=True)
-    envio_informe_final = fields.Date(string='Envío de informe final al cliente', tracking=True)
+    informe_taller = fields.Date(string='Fecha de informe de taller', tracking=True)
+    informe_evaluacion = fields.Date(string='Fecha de informe de evaluación', tracking=True)
+    cotizacion = fields.Date(string='Fecha de cotización', tracking=True)
+    envio_cotizacion = fields.Date(string='Fecha de envío de cotización e informe al cliente', tracking=True)
+    informe_final = fields.Date(string='Fecha de informe final', tracking=True)
+    envio_informe_final = fields.Date(string='Fecha de envío de informe final al cliente', tracking=True)
     monto_cotizacion = fields.Float(
         string='Monto de cotización',
         digits = (12, 2),
         tracking=True
     )
     dias_credito = fields.Integer(string='Días de crédito', tracking=True)
-    encuesta_satisfaccion = fields.Date(string='Encuesta de satisfacción', tracking=True)
-    respuesta_cliente = fields.Date(string='Respuesta del cliente', tracking=True)
-    estatus = fields.Char(string='Estatus', tracking=True)
+    encuesta_satisfaccion = fields.Date(string='Fecha de encuesta de satisfacción', tracking=True)
+    respuesta_cliente = fields.Date(string='Fecha de respuesta del cliente', tracking=True)
+    estatus_id = fields.Many2one(
+        'maintenance.equipment.status',
+        string='Estatus', 
+        tracking=True
+    )
 
 
     po_emision = fields.Date(string ='PO Emisión', tracking=True)
@@ -275,6 +301,27 @@ class MantenimientoEquipo(models.Model):
     )
 
     notas_comerciales = fields.Text(string='Notas Comerciales', tracking=True)
+
+    # Garantía
+
+    estatus_id_ga = fields.Many2one(
+        'maintenance.equipment.status', 
+        string='Estatus', 
+        tracking=True
+    )
+
+    rfq_core_solped_ga = fields.Char(string='RFQ / CORE / SOLPED', tracking=True)
+    purchase_order_ga = fields.Char(string='PO (Purchase Order)', tracking=True)
+    analisis_falla_ga = fields.Date(string='Fecha de análisis de falla', tracking=True)
+    informe_garantia_ga = fields.Date(string='Fecha de informe de garantía', tracking=True)
+
+    po_fecha_entrega_ga = fields.Date(string='PO Fecha de entrega', tracking=True)
+    informe_final_ga = fields.Date(string='Fecha de informe final', tracking=True)
+    envio_informe_final_ga = fields.Date(string='Fecha de envío de informe final al cliente', tracking=True)
+    encuesta_satisfaccion_ga = fields.Date(string='Fecha de encuesta de satisfacción', tracking=True)
+    respuesta_cliente_ga = fields.Date(string='Fecha de respuesta del cliente', tracking=True)
+
+    notas_garantia = fields.Text(string='Notas de Garantía', tracking=True)
 
     # Fecha inicio reparación
 

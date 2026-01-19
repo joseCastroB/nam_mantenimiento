@@ -80,6 +80,7 @@
 
                 <xpath expr="//field[@name='scrap_date']" position="after">
                     <field name="fecha_baja"/>
+                    <field name="centro_costo"/>
                 </xpath>
 
                 <xpath expr="//field[@name='model']" position="before">
@@ -122,7 +123,9 @@
                     <group string="Transito de Salida">
                         <group>
                             <field name="fecha_salida_taller"/>
-                            <field name="transportista_id"/>
+                            <!--    <field name="transportista_id"/> -->
+                            <field name="guia_transportista"/>
+                            <field name="guia_nam"/>
                             <field name="fecha_entrega_almacen"/>    
                         </group>
                     </group>             
@@ -146,37 +149,67 @@
                     </group>
                 </page>
                 <!-- ANTES ERA PURCHASE ORDER (PO) -->
-                <page string="Documentación Comercial" invisible="garantia != 'si'">
+                <page string="Documentación Comercial">
+                    <group string="Seguimiento">
+                        <field name="estatus_id" widget="many2one"/>
+                    </group>
                     <group>
-                        <group>
-                            <field name="informe_taller"/>
-                            <field name="informe_evaluacion"/>
+                        <group string="Información preliminar">
+                            <field name="rfq_core_solped"/>
+                            <field name="informe_taller"/>    
+                            <field name="informe_evaluacion"/> 
                             <field name="cotizacion"/>
                             <field name="envio_cotizacion"/>
-                            <field name="informe_final"/>
-                            <field name="envio_informe_final"/>
-                            <field name="monto_cotizacion"/>
-                            <field name="dias_credito"/>
-                            <field name="po_emision"/>
+                        </group>
+                        <group string="Purchase Order">
+                            <field name="purchase_order"/>
+                            <field name="po_emision"/>  
                             <field name="po_recepcion"/>
-                            <field name="po_fin"/>
-                            <field name="rfq_core_solped"/>
+                            <field name="currency_id"/>
+                            <field name="monto_cotizacion"/>
+                            <field name="monto_po" widget="monetary"/>
+                            <field name="dias_credito"/>
+                            <field name="tasa_cambio"/>
                             <field name="tiempo_ofertado_id"/> 
                         </group>
-                        <group>
-                            <field name="encuesta_satisfaccion"/>
-                            <field name="respuesta_cliente"/>
-                            <field name="estatus"/>
-                            <field name="purchase_order"/>
-                            <field name="monto_po" widget="monetary"/>
-                            <field name="currency_id"/>
-                            <field name="tasa_cambio"/>
-                        </group>
+                    </group>
+                    <group string="Cierre de reparación">
+                        <field name="po_fin"/>
+                        <field name="informe_final"/>
+                        <field name="envio_informe_final"/>
+                        <field name="encuesta_satisfaccion"/>
+                        <field name="respuesta_cliente"/>
                     </group>
                     <separator string="Notas / Observaciones"/>
 
                     <div style="border: 2px solid black; padding: 10px; margin-bottom: 20px; background-color: white;">
                         <field  name="notas_comerciales"
+                                nolabel="1"
+                                placeholder="Escribir notas u observaciones relevantes..."
+                                style="min-height: 100px;"/>
+                    </div>
+                </page>
+
+                <page string="Garantía" invisible="garantia != 'si'">
+                    <group string="Seguimiento">
+                        <field name="estatus_id_ga" widget="many2one"/>           
+                    </group>
+                    <group string="Información preliminar">
+                        <field name="rfq_core_solped_ga"/>
+                        <field name="purchase_order_ga"/>
+                        <field name="analisis_falla_ga"/>
+                        <field name="informe_garantia_ga"/>
+                    </group>
+                    <group string="Cierre de garantía">
+                        <field name="po_fecha_entrega_ga"/>
+                        <field name="informe_final_ga"/>
+                        <field name="envio_informe_final_ga"/>
+                        <field name="encuesta_satisfaccion_ga"/>
+                        <field name="respuesta_cliente_ga"/>
+                    </group>
+                    <separator string="Notas / Observaciones"/>
+                    <div style="border: 2px solid black; padding: 10px; margin-bottom: 20px; background-color: white;">
+                        <field  name="notas_garantia"
                                 nolabel="1"
                                 placeholder="Escribir notas u observaciones relevantes..."
                                 style="min-height: 100px;"/>
