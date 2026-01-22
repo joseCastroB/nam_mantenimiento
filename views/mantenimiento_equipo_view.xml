@@ -81,6 +81,11 @@
                 <xpath expr="//field[@name='scrap_date']" position="after">
                     <field name="fecha_baja"/>
                     <field name="centro_costo"/>
+                    <field name="planner_id"/>
+                    <field name="asesor_id"/>
+                    <field name="flota"/>
+                    <field name="estado_reparacion_id"/>
+                    <field name="edad_dias"/>
                 </xpath>
 
                 <xpath expr="//field[@name='model']" position="before">
@@ -95,14 +100,9 @@
                 
                 <xpath expr="//field[@name='warranty_date']" position="after">
                     <field name="propietario_id" widget="res_partner_many2one"/>
+                    <field name="area_logistica"/>
                     <field name="usuario_id" widget="res_partner_many2one"/>
                     <field name="horas_ingreso"/> 
-                    <field name="planner_id"/>
-                    <field name="asesor_id"/>
-                    <field name="flota"/>
-                    <field name="estado_reparacion_id"/>
-                    <field name="edad_dias"/>
-                    <field name="prox_fin"/>
                 </xpath>
                 
                 <!-- Secciones nuevas -->
@@ -110,9 +110,6 @@
             <xpath expr="//notebook/page[1]" position="after">
 
                 <page string="Logística">
-                    <group>
-                        <field name="area_logistica"/>
-                    </group>
                     <group string="Transito de Ingreso">
                         <group>
                             <field name="fecha_notificacion_cliente"/>
