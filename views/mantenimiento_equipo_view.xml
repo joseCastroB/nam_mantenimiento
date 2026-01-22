@@ -72,7 +72,7 @@
 
                 <xpath expr="//field[@name='category_id']" position="after">
 
-                    <field name="fecha_ingreso"/>
+                <!--    <field name="fecha_ingreso"/> --> 
                     <field name="garantia" widget="radio"/> 
                     <field name="motivo_ingreso"/>
                     <field name="usado_por" widget="radio"/>
