@@ -6,3 +6,4 @@ access_maintenance_product_line,access_maintenance_product_line,model_maintenanc
 access_maintenance_equipment_type,maintenance.equipment.type,model_maintenance_equipment_type,base.group_user,1,1,1,1
 access_maintenance_cost_center,maintenance.cost.center,model_maintenance_cost_center,base.group_user,1,1,1,1
 access_maintenance_equipment_status,maintenance.equipment.status,model_maintenance_equipment_status,base.group_user,1,1,1,1
+access_maintenance_caja_chica_line,maintenance.caja.chica.line,model_maintenance_caja_chica_line,base.group_user,1,1,1,1
