@@ -11,6 +11,24 @@ class MantenimientoTaller(models.Model):
     
     name = fields.Char(string='Nombre del Taller', required=True)
 
+class MaintenanceCajaChicaLine(models.Model):
+    _name = 'maintenance.caja.chica.line'
+    _description = 'Líneas de Caja Chica'
+
+    # Relación con la Orden de Trabajo
+    request_id = fields.Many2one('maintenance.request', string='Orden de Trabajo', ondelete='cascade')
+    
+    # Campos que solicitaste
+    fecha = fields.Date(string='Fecha', default=fields.Date.context_today)
+    empresa = fields.Char(string='Empresa') # Texto libre para hacerlo rápido
+    nro_documento = fields.Char(string='N° Documento')
+    descripcion = fields.Char(string='Descripción')
+    notas = fields.Char(string='Notas')
+    equipo_id = fields.Many2one('maintenance.equipment', string='Equipo')
+    cantidad = fields.Float(string='Cant.', default=1.0)
+    precio_unitario = fields.Float(string='Prec. Unit (S/.)')
+    igv = fields.Float(string='IGV (S/.)')
+
 class MaintenanceRequest(models.Model):
     _inherit = 'maintenance.request'
 
@@ -178,6 +196,10 @@ class MaintenanceRequest(models.Model):
 
     comentario_notificacion = fields.Text(string='Comentario Notificación', tracking=True)
     
+    # Seccion caja chica
+
+    caja_chica_ids = fields.One2many('maintenance.caja.chica.line', 'request_id', string='Caja Chica')
+
     # ---------------------------------------------------------
     # MÉTODO CREATE (Optimizado para Odoo 18)
     # ---------------------------------------------------------

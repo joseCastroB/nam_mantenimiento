@@ -106,6 +106,22 @@
                     </group>
                 </page>   
 
+                <page string="Caja Chica" name="caja_chica_page">
+                    <field name="caja_chica_ids" widget="one2many_list">
+                        <list editable="bottom">
+                            <field name="fecha"/>
+                            <field name="empresa"/>
+                            <field name="nro_documento"/>
+                            <field name="descripcion"/>
+                            <field name="notas" optional="hide"/>
+                            <field name="equipo_id" optional="hide"/>
+                            <field name="cantidad"/>
+                            <field name="precio_unitario"/>
+                            <field name="igv"/>
+                        </list>
+                    </field>
+                </page>
+
             </xpath>
 
         </field>
