@@ -8,9 +8,9 @@
             <field name="priority">10</field>
             <field name="arch" type="xml">
                 <list string="Seleccionar OTs" create="0" delete="0" multi_edit="0">
-                    <field name="name" string="OT"/>
                     <field name="request_date" string="Fecha de solicitud"/>
-                    <field name="employee_id" string="Empleado"/>
+                    <field name="name" string="OT"/>
+                    <field name="user_id" string="Líder"/>
                     <field name="descripcion_corta" string="Descripción"/>
                     <field name="taller_id" string="Ubicación Técnica"/>
                     <field name="stage_id" widget="badge"/>
