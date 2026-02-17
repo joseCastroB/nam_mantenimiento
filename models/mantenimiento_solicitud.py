@@ -182,7 +182,7 @@ class MaintenanceRequest(models.Model):
 
     # Seccion Notificado
 
-    hh_real = fields.Float(string='HH Real', default=0.0, tracking=True)
+    hh_real = fields.Float(string='Horas Empleadas', default=0.0, tracking=True)
 
     porcentaje_completado = fields.Float(string='% Completado Tarea', default=0.0, tracking=True)
 
