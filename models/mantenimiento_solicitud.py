@@ -153,10 +153,10 @@ class MaintenanceRequest(models.Model):
             record.resumen_repuestos = ", ".join(nombres) if nombres else ""
 
 
-    @api.depends('hrs', 'tec')
+    @api.depends('hh_real', 'tec')
     def _compute_hh(self):
         for record in self:
-            record.hh = record.hrs * record.tec
+            record.hh = record.hh_real * record.tec
 
     tecnico_id = fields.Many2many(
         'res.users',
