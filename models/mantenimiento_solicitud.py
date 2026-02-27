@@ -153,10 +153,10 @@ class MaintenanceRequest(models.Model):
             record.resumen_repuestos = ", ".join(nombres) if nombres else ""
 
 
-    @api.depends('hh_real', 'tec')
+    @api.depends('hrs', 'tec')
     def _compute_hh(self):
         for record in self:
-            record.hh = record.hh_real * record.tec
+            record.hh = record.hrs * record.tec
 
     tecnico_id = fields.Many2many(
         'res.users',
@@ -245,13 +245,13 @@ class MaintenanceRequest(models.Model):
                 'user_ids': req.tecnico_id.ids if req.tecnico_id else [],
             })
 
-            if req.tecnico_id and req.hrs > 0 and analytic_account:
+            if req.tecnico_id and req.hh_real > 0 and analytic_account:
                 for user in req.tecnico_id:
                     employee = self.env['hr.employee'].search([('user_id', '=', user.id)], limit=1)
                     
                     if employee:
                         costo_hora = employee.hourly_cost or 0.0
-                        total_base = costo_hora * req.hrs
+                        total_base = costo_hora * req.hh_real
                         costo_final = total_base / tasa_cambio
 
                         timesheet = self.env['account.analytic.line'].create({
@@ -260,7 +260,7 @@ class MaintenanceRequest(models.Model):
                             'task_id': task.id,
                             'account_id': analytic_account.id,
                             'employee_id': employee.id,
-                            'unit_amount': req.hrs,
+                            'unit_amount': req.hh_real,
                             'date': fields.Date.today(),
                         })
 
@@ -304,7 +304,7 @@ class MaintenanceRequest(models.Model):
                     if analytic_account:
                         analytic_account.write({'tasa_cambio': tasa_cambio})
 
-                if 'tecnico_id' in vals or 'hrs' in vals or 'equipment_id' in vals:
+                if 'tecnico_id' in vals or 'hh_real' in vals or 'equipment_id' in vals:
                     
                     task = self.env['project.task'].search([
                         ('project_id', '=', project.id),
@@ -321,13 +321,13 @@ class MaintenanceRequest(models.Model):
                             ])
                             existing_lines.unlink()
 
-                            if req.hrs > 0:
+                            if req.hh_real > 0:
                                 for user in req.tecnico_id:
                                     employee = self.env['hr.employee'].search([('user_id', '=', user.id)], limit=1)
                                     
                                     if employee:
                                         costo_hora = employee.hourly_cost or 0.0
-                                        total_base = costo_hora * req.hrs
+                                        total_base = costo_hora * req.hh_real
                                         costo_final = total_base / tasa_cambio
 
                                         timesheet = self.env['account.analytic.line'].create({
@@ -336,7 +336,7 @@ class MaintenanceRequest(models.Model):
                                             'task_id': task.id,
                                             'account_id': analytic_account.id,
                                             'employee_id': employee.id,
-                                            'unit_amount': req.hrs,
+                                            'unit_amount': req.hh_real,
                                             'date': fields.Date.today(),
                                         })
 
